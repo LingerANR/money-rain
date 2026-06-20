@@ -1,0 +1,15 @@
+services:
+  bank:
+    build: ./bank
+    container_name: ctf_bank
+    ports:
+      - "5001:5001"
+  investment-app:
+    build: ./investment-app
+    container_name: ctf_investment_app
+    ports:
+      - "5000:5000"
+    environment:
+      - BANK_URL=http://bank:5001
+    depends_on:
+      - bank
